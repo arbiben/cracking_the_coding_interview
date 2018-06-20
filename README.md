@@ -1,4 +1,4 @@
-# SOLUTIONS TO CRACKING THE CODING INTERVIEW 6TH EDITION
+# Solutions for Cracking the Coding Interview (6th)
 ### Work in progress
 
 
