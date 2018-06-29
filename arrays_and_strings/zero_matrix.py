@@ -2,7 +2,7 @@
 # the etire row and column are set to 0
 import random
 n = 3
-m = 4
+m = 14
 
 test_matrix = [[random.randint(0,10) for _ in range(m)] for _ in range(n)]
 
@@ -43,7 +43,10 @@ def null_column(matrix_c, column):
     
     return matrix_c
 
-def zero_matrix_clean(matrix):
+def zero_matrix_clean(original_matrix):
+
+    matrix = [row[:] for row in original_matrix] 
+    
     rows = [False] * len(matrix)
     column = [False] * len(matrix[0])
     
@@ -63,11 +66,53 @@ def zero_matrix_clean(matrix):
 
     return matrix
 
-print("before with extra 2d array")
+def zero_matrix_bigO1(original_matrix):
+
+    matrix_b = [row[:] for row in original_matrix] 
+    
+    first_row_has_zero = False
+    first_col_has_zero = False
+
+    for i in range(len(matrix_b)):
+        if matrix_b[i][0] == 0:
+            first_col_has_zero = True
+            break
+    
+    for i in range(len(matrix_b[0])):
+        if matrix_b[0][i] == 0:
+            first_row_has_zero = True
+            break
+
+    for i in range(1, len(matrix_b)):
+        for j in range(1, len(matrix_b[0])):
+            if matrix_b[i][j] == 0:
+                matrix_b[i][0] = 0
+                matrix_b[0][j] = 0
+
+    for i in range(1, len(matrix_b)):
+        if matrix_b[i][0] == 0:
+            matrix_b = null_row(matrix_b, i)
+
+    for i in range(1, len(matrix_b[0])):
+        if matrix_b[0][i] == 0:
+            matrix_b = null_column(matrix_b, i)
+
+    if first_row_has_zero:
+        matrix_b = null_row(matrix_b, 0)
+
+    if first_col_has_zero:
+        matrix_b = null_column(matrix_b, 0)
+
+    return matrix_b
+
+print("before")
 print_matrix(test_matrix)
 
 print("after with extra 2d array (O(n^2) space)")
 print_matrix(zero_matrix(test_matrix))
 
-print("after with no extra array (O(n) space)")
+print("after with two extra arrays (O(n+m) space)")
 print_matrix(zero_matrix_clean(test_matrix))
+
+print("after with no extra array (O(1) space)")
+print_matrix(zero_matrix_bigO1(test_matrix))
