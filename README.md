@@ -1,5 +1,5 @@
 # Solutions for Cracking the Coding Interview (6th)
-#### Work in progress
+#### Work in progress - Currently on this repo:
 
 #### Chapter 1: Arrays and Strings:
 - Is Unique
