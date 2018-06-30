@@ -88,6 +88,11 @@ class Node:
         self.next = None
         self.prev = None
 
+    def getSize(self):
+        if self.next is None:
+            return 1
+        return self.next.getSize()+ 1
+
     def print_linkedlist(self):
         print(self.val, end=" -> ", flush=True)
 

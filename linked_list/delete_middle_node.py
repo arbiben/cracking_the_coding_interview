@@ -2,13 +2,16 @@
 # this node cannot be the first or last node.
 from LinkedList import Node, LinkedList
 import random
+
 def delete_node(node):
+    if node is None or node.next is None:
+        return False
     node.val = node.next.val
     node.next = node.next.next
 
 
-# tester - generate a linkedlist greater that 3 and check the algorithm
 
+# tester - generate a linkedlist greater that 3 and check the algorithm
 size = 0
 n = 0
 while size<3:
@@ -24,5 +27,4 @@ for _ in range(n):
     node = node.next
 
 delete_node(node)
-
 head.print_linkedlist()
