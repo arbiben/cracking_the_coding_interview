@@ -18,7 +18,19 @@ def kth_to_last(head, k):
 
     return curr.val
 
+def kth_to_last_recursive(head, k):
+    if head is None:
+        return 0
+
+    index = kth_to_last_recursive(head.next, k) + 1
+    if k == index:
+        print("with recursion: {}".format(head.val))
+        return index
+    else:
+        return index
+
 head = LinkedList.random_linkedlist()
 head.print_linkedlist()
 
 print(kth_to_last(head, 5))
+kth_to_last_recursive(head, 5)
