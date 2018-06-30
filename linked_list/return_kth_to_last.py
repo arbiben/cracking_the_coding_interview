@@ -18,6 +18,7 @@ def kth_to_last(head, k):
 
     return curr.val
 
+# recursive call takes O(n) space 
 def kth_to_last_recursive(head, k):
     if head is None:
         return 0
