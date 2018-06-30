@@ -69,13 +69,13 @@ class LinkedList:
         
         return True
 
-    def random_linkedlist():
+    def random_linkedlist(a,b):
         random.seed(a=None, version=2)
         n = random.randint(1, 10)
-        head = Node(random.randint(0,100))
+        head = Node(random.randint(a,b))
         t = head
         for _ in range(n):
-            t.next = Node(random.randint(0,100))
+            t.next = Node(random.randint(a,b))
             t = t.next
 
         return head
