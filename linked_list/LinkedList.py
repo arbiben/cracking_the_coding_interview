@@ -1,5 +1,6 @@
 # linked list class
 # can function as a stack or queue as well
+import random
 
 class LinkedList:
     def __init__(self):
@@ -68,6 +69,16 @@ class LinkedList:
         
         return True
 
+    def random_linkedlist():
+        random.seed(a=None, version=2)
+        n = random.randint(1, 10)
+        head = Node(random.randint(0,100))
+        t = head
+        for _ in range(n):
+            t.next = Node(random.randint(0,100))
+            t = t.next
+
+        return head
 
 # a Node for a linked list.
 
@@ -77,3 +88,10 @@ class Node:
         self.next = None
         self.prev = None
 
+    def print_linkedlist(self):
+        print(self.val, end=" -> ", flush=True)
+
+        if self.next is not None:
+            self.next.print_linkedlist()
+        else:
+            print("None")
