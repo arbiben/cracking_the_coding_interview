@@ -72,7 +72,7 @@ class LinkedList:
 
     def random_linkedlist(a,b):
         random.seed(a=None, version=2)
-        n = random.randint(1, 10)
+        n = random.randint(5, 11)
         head = Node(random.randint(a,b))
         t = head
         for _ in range(n):
