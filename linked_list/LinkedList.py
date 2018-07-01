@@ -1,6 +1,7 @@
 # linked list class
 # can function as a stack or queue as well
 import random
+random.seed(a=None, version=2)
 
 class LinkedList:
     def __init__(self):

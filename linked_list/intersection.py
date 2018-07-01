@@ -19,8 +19,12 @@ def intersection(l1, l2):
     if not l1 or not l2:
         return None
 
-    len_1 = get_length(l1)
-    len_2 = get_length(l2)
+    tail1,len_1 = get_length(l1)
+    tail2,len_2 = get_length(l2)
+    
+    if tail1 is not tail2:
+        return None
+
 
     longer = l1 if len_1>len_2 else l2
     short  = l2 if len_1>len_2 else l1
@@ -28,8 +32,6 @@ def intersection(l1, l2):
     for _ in range(abs(len_1 - len_2)):
         longer = longer.next
 
-    longer.print_linkedlist()
-    short.print_linkedlist()
     while short:
         if short is longer:
             return short
@@ -41,11 +43,11 @@ def intersection(l1, l2):
 
 def get_length(l):
     count = 0
-    while l:
+    while l.next:
         count += 1
         l = l.next
 
-    return count
+    return l, count
 
 # tester
 head1 = LinkedList.random_linkedlist(0,100)
@@ -62,11 +64,15 @@ for _ in range(h1_len):
 for _ in range(h2_len):
     inter2 = inter2.next
 
-# remove comment here to make two linkedlists intersect
+# add/remove comment here to make two linkedlists not/intersect
 inter1.next = inter2
-inter_with_set = intersection_with_set(head1, head2)
 
+head1.print_linkedlist()
+head2.print_linkedlist()
+
+inter_with_set = intersection_with_set(head1, head2)
 inter = intersection(head1, head2)
+
 if inter:
     print("intersection without SET: {}".format(inter.val))
 else:
