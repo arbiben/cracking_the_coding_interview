@@ -1,5 +1,7 @@
 # Solutions for Cracking the Coding Interview (6th)
-#### Work in progress - Currently on this repo:
+#### Work in progress
+#### Currently on this repo:
+###### All solutions are written in python
 
 #### Chapter 1: Arrays and Strings:
 - Is Unique
