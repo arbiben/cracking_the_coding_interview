@@ -9,16 +9,28 @@ class LinkedList:
         self.tail = None
         self.len = 0
 
-    def push(self, val):
-        new_node = Node(val)
-        if self.len == 0:
-            self.head = new_node
-            self.tail = new_node
+    def first(self):
+        if self.head:
+            return self.haed.val
+        return None
 
+    def last(self):
+        if self.tail:
+            return self.tail.val    
+        return None
+
+    def first_node(self, val):
+        self.head = self.tail = Node(val)
+    
+    def push(self, val):
+        if not self.head:
+            self.first_node(val)
+        
         else:
-            new_node.next = self.head
-            self.head.prev = new_node
-            self.head = new_node
+            node = Node(val)
+            node.next = self.head
+            self.head.prev = node
+            self.head = node
 
         self.len += 1
 
@@ -26,21 +38,21 @@ class LinkedList:
         if self.head is None:
             return False
 
-        self.head = self.head.next
+        node = self.head
+        selfi.head = self.head.next
         self.head.prev = None
         self.len -=1
-        return True
+
+        return node.val
     
     def append(self, val):
-        new_node = Node(val)
-        if self.len == 0:
-            self.head = new_node
-            self.tail = new_node
+        if not self.tail:
+            self.first_node(val)
 
         else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
+            self.tail.next = Node(val)
+            self.tail.next.prev = self.tail
+            self.tail = self.tail.next
         
         self.len += 1
     
@@ -48,10 +60,13 @@ class LinkedList:
         if self.tail is None:
             return False
 
+        node = self.tail
         self.tail = self.tail.prev
-        self.tail.next = None
+        if self.tail:
+            self.tail.next = None
         self.len -=1
-        return True
+        
+        return node.val
 
     def remove(self, node):
         if node is None:
@@ -69,6 +84,10 @@ class LinkedList:
         self.len -= 1
         
         return True
+
+    def isEmpty(self):
+        return self.len == 0
+
 
     def random_linkedlist(a,b):
         random.seed(a=None, version=2)
