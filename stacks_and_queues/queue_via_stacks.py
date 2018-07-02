@@ -14,7 +14,7 @@ class queue_from_stacks:
             return self.s2.pop()
         else:
             while self.s1.peek():
-                self.s2.push(self.s1.pop().val)
+                self.s2.push(self.s1.pop())
 
             if not self.s2.isEmpty():
                 return self.s2.pop()

@@ -13,7 +13,7 @@ class Stack:
         self.head = self.head.next
         self.count -= 1
 
-        return node
+        return node.val
 
     def push(self, val):
         if not self.head:
@@ -27,8 +27,11 @@ class Stack:
         self.count += 1
 
     def peek(self):
-        return self.head
+        return self.head.val
             
+    def hasNext(self):
+        return not self.isEmpty()
+
     def isEmpty(self):
         return self.count == 0
 
