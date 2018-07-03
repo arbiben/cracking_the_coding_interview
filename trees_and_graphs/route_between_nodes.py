@@ -29,6 +29,24 @@ def is_route(a, b):
 
     return False
 
+def is_route_dfs(a, b):
+    if not a or not b:
+        return False
+
+    return is_rout_helper(a, b, set())
+
+def is_rout_helper(curr, destination, touched):
+    if curr is destination:
+        return True
+
+    touched.add(curr)
+    
+    for node in curr.neighbors:
+        if node not in touched and is_rout_helper(node, destination, touched):
+            return True
+
+    return False
 
 g = gg().get()
-print(is_route(g[0],g[3]))
+print("BFS: {}".format(is_route(g[0],g[2])))
+print("DFS: {}".format(is_route_dfs(g[0], g[2])))
