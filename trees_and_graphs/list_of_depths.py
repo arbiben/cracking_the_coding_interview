@@ -18,9 +18,27 @@ def list_of_depth_helper(root, d, list_of_lists):
 
     return list_of_lists
 
+def list_of_depth_bfs(root):
+    if not root:
+        return None
+
+    final_list = []
+    curr = [root]
+
+    while len(curr) > 0:
+        final_list.append(curr)
+        parents = curr
+        curr = []
+        for node in parents:
+            if node.right:
+                curr.append(node.right)
+            if node.left:
+                curr.append(node.left)
+        
+    return final_list
+
 
 # these methods are the same as mininal tree - they were added to create a sample tree
-# tester
 def list_to_tree(l):
     return to_tree_helper(l, 0, len(l)-1)
 
@@ -35,7 +53,9 @@ def to_tree_helper(sorted_list, l, r):
 
     return node
 
+# TEST
 
 new_list = [i for i in range(10)]
 root = list_to_tree(new_list)
-print(list_of_depth(root))
+print("DFS: {}".format(list_of_depth(root)))
+print("BFS: {}".format(list_of_depth_bfs(root)))
