@@ -1,4 +1,6 @@
+# generates a graph (not random)
 from Node import Node
+
 class gg:
     def __init__(self):
         self.a = Node(0)

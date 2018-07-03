@@ -1,4 +1,5 @@
 # given a sorted list - transform it to a BST
+
 from Node import Node
 
 def list_to_tree(l):
@@ -14,8 +15,5 @@ def to_tree_helper(sorted_list, l, r):
 
     return node
 
-
-
 new_list = [i for i in range(10)]
 root = list_to_tree(new_list)
-root.print_tree()
