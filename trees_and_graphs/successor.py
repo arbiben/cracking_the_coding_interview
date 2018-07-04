@@ -23,6 +23,19 @@ def successor_helper(child, parent):
         return parent
     return successor_helper(parent, parent.parent)
 
+# iterative function - O(1) space, O(logn) time
+def successor_iterative(node):
+    if not node:
+        return None
+    if node.right:
+        return get_most_left(node.right)
+    parent = node.parent
+    while parent:
+        if parent.left is node:
+            return parent
+        node = parent
+        parent = parent.parent
+    return parent
 
 # tester - generate a bst and create test cases
 t = random_tree()
@@ -38,4 +51,11 @@ print("Successor of 3 should be 4: {}".format(successor(three).val))
 print("Successor of 4 should be 5: {}".format(successor(tree).val))
 print("Successor of 5 should be 6: {}".format(successor(five).val))
 print("Successor of 6 should be 7: {}".format(successor(six).val))
-print("Successor of 9 should be None: {}".format(successor(nine)))
+print("Successor of 9 should be None: {}\n".format(successor(nine)))
+print("Iterative Function:")
+print("Successor of 2 should be 3: {}".format(successor_iterative(two).val))
+print("Successor of 3 should be 4: {}".format(successor_iterative(three).val))
+print("Successor of 4 should be 5: {}".format(successor_iterative(tree).val))
+print("Successor of 5 should be 6: {}".format(successor_iterative(five).val))
+print("Successor of 6 should be 7: {}".format(successor_iterative(six).val))
+print("Successor of 9 should be None: {}".format(successor_iterative(nine)))
