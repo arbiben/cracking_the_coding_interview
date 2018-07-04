@@ -18,6 +18,11 @@ class random_tree:
         node = Node(sorted_list[mid])
         node.left = self.to_tree_helper(sorted_list, l, mid-1)
         node.right = self.to_tree_helper(sorted_list, mid+1, r)
+        
+        if node.left:
+            node.left.parent = node
+        if node.right:
+            node.right.parent = node
 
         return node
     
@@ -25,8 +30,11 @@ class random_tree:
         root = Node(1)
         node = root
         for _ in range(random.randint(5, 10)):
-            node.left = Node(random.randint(0,100))
-            node.right = Node(random.randint(0,100))
+            left = Node(random.randint(0, 100))
+            right = Node(random.randint(0, 100))
+            left.parent = right.parent = node
+            node.left = left
+            node.right = right
             i = random.randint(0,1)
             if i:
                 node = node.left
