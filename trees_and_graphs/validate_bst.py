@@ -40,12 +40,29 @@ def validate_bst_2(root):
     
     return True
 
+def validate_bst_3(root):
+    return validate_bst_help3r(root, None, None)
+
+def validate_bst_help3r(root, min_val, max_val):
+    if not root:
+        return True
+    if ((min_val and min_val > root.val) or
+       (max_val and max_val < root.val)):
+        return False
+    if ((not validate_bst_help3r(root.left, min_val, root.val)) or
+       (not validate_bst_help3r(root.right, root.val, max_val))):
+        return False
+    
+    return True
+
 t = random_tree()
 bal = t.balanced
 unbal = t.unbal
 
 print("With arr, should print True: {}".format(validate_bst(bal)))
-print("No arr, should print True: {}\n".format(validate_bst_2(bal)))
+print("No arr, should print True: {}".format(validate_bst_2(bal)))
+print("With arr, should print True: {}\n".format(validate_bst_3(bal)))
 
 print("With arr, should print False: {}".format(validate_bst(unbal)))
 print("No arr, should print False: {}".format(validate_bst_2(unbal)))
+print("With arr, should print True: {}".format(validate_bst_3(unbal)))
