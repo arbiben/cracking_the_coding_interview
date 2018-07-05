@@ -76,7 +76,7 @@ def doDFS(node, stack):
         stack.append(node.val)
     return True
 
-
+# test case similar to the book
 p_list = ['a','b','c','d','e','f']
 d_list = [['a','d'],['f','b'],['b','d'],['f','a'],['d','c']]
 d_list2 = [['a', 'd'], ['f', 'b'], ['b', 'd'], ['f', 'a'], ['d', 'c'], ['c','d']]
