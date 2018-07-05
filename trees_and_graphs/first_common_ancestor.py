@@ -110,7 +110,7 @@ def covers2(root, a, b):
     return covers2(root.left, a, b) or covers2(root.right, a, b)
 
 # test
-t = random_tree()
+t = random_tree(10)
 root = t.balanced
 seven = root.right
 five = seven.left
