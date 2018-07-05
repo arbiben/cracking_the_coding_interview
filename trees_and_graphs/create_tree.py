@@ -2,8 +2,8 @@ from Node import Node
 import random
 
 class random_tree:
-    def __init__(self):
-        new_list = [i for i in range(10)]
+    def __init__(self, size):
+        new_list = [i for i in range(size)]
         self.balanced = self.list_to_tree(new_list)
         self.unbal = self.unbalanced_tree_generator()
 

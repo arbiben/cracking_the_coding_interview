@@ -27,7 +27,10 @@
 #### Chapter 3: Stacks and Queues
 - Three in One
 - Stack Min
-- Stack of Plates
+- Stack of Plates (stacks_of_stacks.py)
 - Queue via Stacks
 - Sort Stack
 - Animal Shelter
+
+#### Chapter 4: Trees and Graphs
+
