@@ -5,6 +5,7 @@
 from collections import deque
 from Node import Node
 
+# BFS
 def build_order(project_list, dependencies):
     if len(project_list) < 2:
         return project_list
@@ -40,10 +41,48 @@ def build_order(project_list, dependencies):
     else:
         return proj_order
 
+# DFS
+def build_order_dfs(project_list, dependencies):
+    if len(project_list) < 2:
+        return project_list
+    
+    projects = {}
+    for p in project_list:
+        projects[p] = Node(p)
+
+    for d in dependencies:
+        parent = projects[d[0]]
+        child = projects[d[1]]
+        parent.children.append(child)
+    
+    stack = []
+    for _, val in projects.items():
+        if not doDFS(val, stack):
+            return('Loop detected!')
+
+    stack.reverse()
+    return stack
+
+def doDFS(node, stack):
+    if node.status == "PROCESSING":
+        return False
+    if node.status == None:    
+        node.status = "PROCESSING"
+        for child in node.children:
+            if not doDFS(child, stack):
+                return False
+        
+        node.status = "COMPLETE"
+        stack.append(node.val)
+    return True
+
 
 p_list = ['a','b','c','d','e','f']
 d_list = [['a','d'],['f','b'],['b','d'],['f','a'],['d','c']]
 d_list2 = [['a', 'd'], ['f', 'b'], ['b', 'd'], ['f', 'a'], ['d', 'c'], ['c','d']]
-
+print("BFS")
 print("Should return a list: {}".format(build_order(p_list, d_list)))
-print("Should an error: {}".format(build_order(p_list, d_list2)))
+print("Should an error: {}\n".format(build_order(p_list, d_list2)))
+print("DFS")
+print("Should return a list: {}".format(build_order_dfs(p_list, d_list)))
+print("Should an error: {}".format(build_order_dfs(p_list, d_list2)))

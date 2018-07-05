@@ -9,6 +9,7 @@ class Node:
         self.neighbors = set()
         self.children = []
         self.p_count = 0
+        self.status = None
 
     def addneighbors(self, *args):
         for node in args:
