@@ -1,3 +1,5 @@
+# Node data structure for all the questions in this chapter
+
 class Node:
     def __init__(self, val):
         self.val = val
@@ -5,6 +7,8 @@ class Node:
         self.right = None
         self.parent = None
         self.neighbors = set()
+        self.children = []
+        self.p_count = 0
 
     def addneighbors(self, *args):
         for node in args:
