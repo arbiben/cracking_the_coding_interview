@@ -6,6 +6,7 @@ from create_tree import random_tree
 from collections import deque
 import copy
 
+# less efficient
 def count_paths(root, value):
     if not root:
         return 0
@@ -38,8 +39,40 @@ def get_sum(val_list):
         total += v
     return total
 
-# test
+# Much better solution: RUNNING SUM
+def count_paths_running_sum(root, target_value):
+    if not root:
+        return 0
+    return count_running_helper(root, target_value, {}, 0)
+
+def count_running_helper(root, target_value, running_sum, curr):
+    if not root:
+        return 0
+
+    paths = 0
+    curr += root.val
+    if curr == target_value:
+        paths = 1
+    diff = curr - target_value
+    if diff in running_sum:
+        paths += running_sum[diff]
+
+    if curr in running_sum:
+        running_sum[curr] += 1
+    else:
+        running_sum[curr] = 1
+    
+    paths += (count_running_helper(root.left, target_value, running_sum, curr)
+        + count_running_helper(root.right, target_value, running_sum, curr)) 
+
+    running_sum[curr] -= 1
+    curr -= root.val
+    return paths
+
+
+# test    
 t = random_tree(15)
 tree = t.negative # generates a tree with negative vals
-print(t.list_of_depth(tree))
-print(count_paths(tree, 10))
+
+print("Using brute force: {}".format(count_paths(tree, 10)))
+print("Using running sum: {}".format(count_paths_running_sum(tree, 10)))

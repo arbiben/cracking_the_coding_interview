@@ -4,6 +4,13 @@ import random
 class random_tree:
     def __init__(self, size):
         new_list = [i for i in range(size)]
+        with_neg = []
+        for i in range(size):
+            if random.randint(0,1):
+                with_neg.append(i * -1)
+            else:
+                with_neg.append(i)
+        self.negative = self.list_to_tree(with_neg)
         self.balanced = self.list_to_tree(new_list)
         self.unbal = self.unbalanced_tree_generator()
 
