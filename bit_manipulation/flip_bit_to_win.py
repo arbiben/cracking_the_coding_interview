@@ -78,6 +78,6 @@ def flip_to_win3(num):
     return curr_max
 
 # test, example from book
-print(flip_to_win(1775))
-print(flip_to_win2(1775))
-print(flip_to_win3(1775))
+print("O(n+i+j) time, O(1) space: {}".format(flip_to_win(1775)))
+print("O(n) time, O(n) space: \t{}".format(flip_to_win2(1775)))
+print("O(n) time, O(1) space: \t{}".format(flip_to_win3(1775)))
