@@ -33,4 +33,14 @@
 - Animal Shelter
 
 #### Chapter 4: Trees and Graphs
-
+- Route Between Nodes
+- Minimal Tree
+- List of Depths
+- Check Balanced (is_balanced.py)
+- Validate BST
+- Successor
+- Build Order
+- First Commin Ancestor
+- BST Sequence - not working
+- Check Subtree
+- Paths with Sums
