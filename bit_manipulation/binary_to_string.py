@@ -15,10 +15,8 @@ def binary_to_string(x):
         else:
             binary_val += '1'
             decimal -= 1
-    
-
     if len(binary_val) >= 34:
-        return "Error booooo"
+        return "Error"
     
     return str(int_bin_val) + str(binary_val)
 
@@ -40,4 +38,27 @@ def get_int_binary(x):
 
     return bin_val
 
+def decimal_to_bin(x):
+    if len(str(x).split('.')) != 2:
+        return "Error"
+
+    decimal = get_decimal(x)
+    int_bin_val = get_int_binary(int(x))
+    binary_val = '.'
+    fraction = 0.5
+
+    while len(binary_val) < 34 and decimal > 0:
+        if decimal >= fraction:
+            binary_val += '1'
+            decimal -= fraction
+        else:
+            binary_val += '0'
+        fraction /= 2
+
+    if len(binary_val) > 33:
+        return "Error"
+
+    return str(int_bin_val) + str(binary_val)
+    
 print(binary_to_string(40.15625))
+print(decimal_to_bin(40.15625))
