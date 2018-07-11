@@ -48,3 +48,15 @@ class Node:
         for key, val in self.children.items():
             val.get_all_words(curr+key, word_list)
 
+def create_trie(l):
+    t = Trie()
+    for word in l:
+        t.insert(word)
+    return t
+    
+# exapmle
+lib = ['them','there','the','this', 'is', 'a', 'sentance', 'of', 'words', 'worst', 'off', 'on', 'sentiment']
+trie = create_trie(lib)
+list_of_words = trie.starts_with('th')
+
+print(list_of_words)
