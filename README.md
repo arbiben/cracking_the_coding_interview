@@ -44,3 +44,9 @@
 - BST Sequence - not working
 - Check Subtree
 - Paths with Sums
+
+#### Chapter 5: Bit Manipulation
+- Insertion
+- Binary to String
+- Flip Bit to Win
+- Next Number
