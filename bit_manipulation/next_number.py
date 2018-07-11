@@ -17,6 +17,7 @@ def next_num(num):
     print_next_largest_number(num)
     print_next_smallest_number(num)
 
+# actual answer
 def print_next_largest_number(num):
     first_one = get_first_non_trailing_one(num)
     ones = count_ones_after_n(num, first_one)
@@ -29,11 +30,11 @@ def print_next_largest_number(num):
     num = mask | num
     print("next largest: {} \t\tbinary: {}".format(num, "{0:b}".format(num)))
 
+# actual answer 
 def print_next_smallest_number(num):
     first_zero = get_first_non_trailing_zero(num)
     ones = count_ones_after_n(num, first_zero) - 1
     num = insert_one_and_mask(num, first_zero)
-    
     one_mask = ((1 << ones) - 1)
     num = num | one_mask
     print("next smallest: {} \t\tbinary: {}".format(num, "{0:b}".format(num)))
@@ -127,4 +128,4 @@ def count_ones_after_n(num, n):
         n -= 1
     return count
 
-next_num(13948)
+next_num(10115)
