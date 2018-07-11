@@ -50,3 +50,4 @@
 - Binary to String
 - Flip Bit to Win
 - Next Number
+- Conversion
