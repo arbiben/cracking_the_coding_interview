@@ -19,9 +19,9 @@ def next_num(num):
 
 def print_next_largest_number(num):
     first_one = get_first_non_trailing_one(num)
-    ones = count_ones_after_n(num, first_one) - 4
+    ones = count_ones_after_n(num, first_one)
     num = (1 << first_one) ^ num
-    
+    num = num & ~((1 << first_one+1) - 1)
     mask = (1 << first_one) -1
     diff = first_one - ones
     zero_mask = ~((1 << diff) - 1)
