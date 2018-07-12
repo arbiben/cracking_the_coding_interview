@@ -51,3 +51,5 @@
 - Flip Bit to Win
 - Next Number
 - Conversion
+- Pairwise Swap
+- 
