@@ -14,4 +14,15 @@ def fib_helper(n, l):
     l.append(next_num)
     return next_num
 
-print(fib(170))
+def fib_iter(n):
+    if n==0 or n==1:
+        return 1
+    a = b = 1
+    for i in range(n-1):
+        c = a + b
+        a = b
+        b = c
+    return b
+
+print(fib(17))
+print(fib_iter(17))
