@@ -15,7 +15,6 @@ def parens(n):
                 temp = p[:i+1] + "()" + p[i+1:]
                 new_parens.add(temp)
         new_parens.add("()"+p)
-
     return new_parens
-
+    
 print(parens(3))
