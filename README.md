@@ -53,7 +53,7 @@
 - Conversion
 - Pairwise Swap
 
-#### Chapter 6: Recursion and Dynamic Programming
+#### Chapter 8: Recursion and Dynamic Programming
 - Triple Step
 - Robot in a Grid
 - Magic Index
