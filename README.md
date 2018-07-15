@@ -54,6 +54,8 @@
 - Pairwise Swap
 
 #### Chapter 8: Recursion and Dynamic Programming
+- Count (leetcode.com)
+- fibonacci (from the examples)
 - Triple Step
 - Robot in a Grid
 - Magic Index
