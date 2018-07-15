@@ -52,4 +52,12 @@
 - Next Number
 - Conversion
 - Pairwise Swap
-- 
+
+#### Chapter 6: Recursion and Dynamic Programming
+- Triple Step
+- Robot in a Grid
+- Magic Index
+- Power Set
+- Recursive Multiply
+- Towers of Hanoi
+- Permutation without Dups
