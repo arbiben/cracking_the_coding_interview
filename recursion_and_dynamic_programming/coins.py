@@ -36,4 +36,5 @@ def count_nickels(n):
         n_amnt += 5
     return ans
 
-print(coins(26))
+#test case
+print(coins(23))
