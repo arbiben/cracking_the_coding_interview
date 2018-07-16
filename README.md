@@ -63,3 +63,7 @@
 - Recursive Multiply
 - Towers of Hanoi
 - Permutation without Dups
+- Permutation with Dups
+- Parens
+- Paint Fill
+- Coins
