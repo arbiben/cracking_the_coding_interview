@@ -5,6 +5,9 @@
 # of the heights of each box
 import random
 
+###################################
+#           recursoin             #
+###################################
 def tallestBoxStack(listOfBoxes):
     last = len(listOfBoxes)-1
     return tallestBoxStackHelper(listOfBoxes, last)
@@ -24,10 +27,38 @@ def tallestBoxStackHelper(l, i):
     with_current = currentBox.height + tallestBoxStackHelper(l, i-2)
     without_curr = tallestBoxStackHelper(l, i-1)
 
-    if with_current > without_curr:
-        print(currentBox.height)
-
     return max(with_current, without_curr)
+
+###################################
+#         memoization             #
+###################################
+def tallestBoxStackMem(boxes):
+    last = len(boxes)-1
+    arr = [-1 for _ in range(len(boxes))]
+    print(arr)
+    i = 0;
+    return helper(boxes, arr, i)
+
+def helper(boxes, arr, i):
+    if i<0:
+        return 0
+    if arr[i] != -1:
+        return arr[i]
+    if i == 0:
+        arr[i] = boxes[i].height
+        return arr[i]
+
+    curr = boxes[i]
+    nextBox = boxes[i-1]
+
+    if curr.width > nextBox.width and curr.depth > nextBox.depth:
+        arr[i] = curr.height + tallestBoxStackHelper(l, i-1)
+    else:
+        with_current = curr.height + tallestBoxStackHelper(l, i-2)
+        without_curr = tallestBoxStackHelper(l, i-1)
+        arr[i] = max(with_current, without_curr)
+
+    return arr[i]
 
 class Box:
     def __init__(self, height, width, depth):
@@ -69,34 +100,7 @@ def create_list_of_boxes(n):
         boxes.append(Box(h,w,d))
     return boxes
 
-def tallestBoxStackMem(boxes):
-    last = len(boxes)-1
-    arr = [-1 for _ in range(len(boxes))]
-    i = 0;
-    return helper(boxes, arr, i)
-
-def helper(boxes, arr, i):
-    if i<0:
-        return 0
-    if arr[i] != -1:
-        return arr[i]
-    if i == 0:
-        arr[i] = boxes[i].height
-        return arr[i]
-
-    curr = boxes[i]
-    nextBox = boxes[i-1]
-
-    if curr.width > nextBox.width and curr.depth > nextBox.depth:
-        arr[i] = curr.height + tallestBoxStackHelper(l, i-1)
-    else:
-        with_current = curr.height + tallestBoxStackHelper(l, i-2)
-        without_curr = tallestBoxStackHelper(l, i-1)
-        arr[i] = max(with_current, without_curr)
-
-    return arr[i]
-
-
+# test
 boxes = sorted(create_list_of_boxes(10))
 print(boxes)
 print("regular recursion: {}".format(tallestBoxStack(boxes)))
