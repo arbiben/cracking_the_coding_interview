@@ -17,16 +17,15 @@ def tallestBoxStackHelper(l, i):
         return currentBox.height
     nextBox = l[i-1]
     if currentBox.width > nextBox.width and currentBox.depth > nextBox.depth:
+        print(currentBox.height)
         return currentBox.height + tallestBoxStackHelper(l, i-1)
+
 
     with_current = currentBox.height + tallestBoxStackHelper(l, i-2)
     without_curr = tallestBoxStackHelper(l, i-1)
-
+    if with_current > without_curr:
+        print(currentBox.height)
     return with_current if with_current > without_curr else without_curr
-
-
-
-
 
 class Box:
     def __init__(self, height, width, depth):
@@ -41,6 +40,10 @@ class Box:
         return self.__str__()
 
     def __lt__(self, other):
+        if self.height == other.height:
+            if self.width == other.width:
+                return self.depth < other.depth
+            return self.width < other.width
         return self.height < other.height
 
     def __gt__(self, other):
