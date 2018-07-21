@@ -17,7 +17,14 @@ def tallestBoxStackHelper(l, i):
         return currentBox.height
     nextBox = l[i-1]
     if currentBox.width > nextBox.width and currentBox.depth > nextBox.depth:
-        return 
+        return currentBox.height + tallestBoxStackHelper(l, i-1)
+
+    with_current = currentBox.height + tallestBoxStackHelper(l, i-2)
+    without_curr = tallestBoxStackHelper(l, i-1)
+
+    return with_current if with_current > without_curr else without_curr
+
+
 
 
 
@@ -57,4 +64,6 @@ def create_list_of_boxes(n):
         boxes.append(Box(h,w,d))
     return boxes
 
-print(sorted(create_list_of_boxes(10)))
+boxes = sorted(create_list_of_boxes(10))
+print(boxes)
+print(tallestBoxStack(boxes))
