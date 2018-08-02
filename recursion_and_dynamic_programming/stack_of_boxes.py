@@ -6,6 +6,27 @@
 import random
 def tallestBoxStack(boxes):
     print("Recurse with memoization: {}".format(helperMem(boxes)))
+    print("Recurse with and without curr: {}".format(helperSkip(boxes)))
+
+def helperSkip(boxes):
+    heightArr = [-1 for _ in range(len(boxes))]
+    ans = create_stack_second(boxes, 0, None, heightArr)
+    print(heightArr)
+    return ans
+
+def create_stack_second(boxes, i, prevBox, heightArr):
+    if i >= len(boxes):
+        return 0
+
+    curr = boxes[i]
+    with_curr = 0
+    if canAbove(prevBox, curr):
+        with_curr = curr.height + create_stack_second(boxes, i+1, curr, heightArr)
+
+    without_curr = create_stack_second(boxes, i+1, prevBox, heightArr)
+    heightArr[i] = max(with_curr, without_curr)
+    return heightArr[i]
+
 
 def helperMem(boxes):
     maxHeight = 0
@@ -13,6 +34,7 @@ def helperMem(boxes):
     for i in range(len(boxes)):
         maxHeight = max(maxHeight, create_stack(boxes, i, heightArr))
 
+    print(heightArr)
     return maxHeight
 
 def create_stack(boxes, i, heightArr):
@@ -28,7 +50,7 @@ def create_stack(boxes, i, heightArr):
     return maxHeight
 
 def canAbove(first, second):
-    if second.height >= first.height or second.width >= first.width or second.depth >= first.depth:
+    if first and (second.height >= first.height or second.width >= first.width or second.depth >= first.depth):
         return False
     return True
 
