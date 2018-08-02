@@ -4,6 +4,33 @@
 # height of the tallest possible stack. the height of the stack is the sum
 # of the heights of each box
 import random
+def tallestBoxStack(boxes):
+    print("Recurse with memoization: {}".format(helperMem(boxes)))
+
+def helperMem(boxes):
+    maxHeight = 0
+    heightArr = [-1 for _ in range(len(boxes))]
+    for i in range(len(boxes)):
+        maxHeight = max(maxHeight, create_stack(boxes, i, heightArr))
+
+    return maxHeight
+
+def create_stack(boxes, i, heightArr):
+    if i < len(boxes) and heightArr[i] != -1:
+        return heightArr[i]
+
+    curr = boxes[i]
+    maxHeight = 0
+    for j in range(i+1, len(boxes)):
+        if canAbove(curr, boxes[j]):
+            maxHeight = max(maxHeight, create_stack(boxes, j, heightArr))
+    heightArr[i] = maxHeight = maxHeight + curr.height
+    return maxHeight
+
+def canAbove(first, second):
+    if second.height >= first.height or second.width >= first.width or second.depth >= first.depth:
+        return False
+    return True
 
 class Box:
     def __init__(self, height, width, depth):
@@ -47,6 +74,6 @@ def create_list_of_boxes(n):
 
 # test
 boxes = sorted(create_list_of_boxes(10))
+boxes.reverse()
 print(boxes)
-#print("regular recursion: {}".format(tallestBoxStack(boxes)))
-print("memoization: {}".format(tallestBoxStackMem(boxes)))
+tallestBoxStack(boxes)
