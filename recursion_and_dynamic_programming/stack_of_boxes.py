@@ -10,24 +10,28 @@ import random
 ###################################
 def tallestBoxStack(listOfBoxes):
     last = len(listOfBoxes)-1
-    return tallestBoxStackHelper(listOfBoxes, last)
+    return tallestBoxStackHelper(listOfBoxes, last, None)
 
-def tallestBoxStackHelper(l, i):
+def tallestBoxStackHelper(l, i, prevBox):
     if i<0:
         return 0
     currentBox = l[i]
     if i==0:
         return currentBox.height
+
+    if prevBox and (prevBox.width < currentBox.width or prevBox.depth < currentBox.depth):
+        return 0
+
     nextBox = l[i-1]
     if currentBox.width > nextBox.width and currentBox.depth > nextBox.depth:
         print(currentBox.height)
-        return currentBox.height + tallestBoxStackHelper(l, i-1)
+        return currentBox.height + tallestBoxStackHelper(l, i-1, currentBox)
 
 
-    with_current = currentBox.height + tallestBoxStackHelper(l, i-2)
-    without_curr = tallestBoxStackHelper(l, i-1)
+    with_current = currentBox.height + tallestBoxStackHelper(l, i-2, currentBox)
+    without_curr = tallestBoxStackHelper(l, i-1, prevBox)
 
-    return max(with_current, without_curr)
+    return max(with_current, without_curr, currentBox.height)
 
 ###################################
 #         memoization             #
