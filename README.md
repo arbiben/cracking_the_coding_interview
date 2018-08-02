@@ -67,3 +67,4 @@
 - Parens
 - Paint Fill
 - Coins
+- Stack of Boxes
