@@ -11,6 +11,7 @@ class Heap:
             self.l[0] = self.l.pop()
             self.percolate_down()
             return r
+        return "Nothing to pop booboo"
 
     def add(self, data):
         self.l.append(data)
@@ -55,6 +56,8 @@ h.add(10)
 h.add(3)
 h.add(6)
 h.add(9)
+h.add(1)
 h.print_heap()
 while h.has_next():
     print(h.pop())
+print(h.pop())
